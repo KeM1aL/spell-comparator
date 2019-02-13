@@ -1,0 +1,8 @@
+{
+  "universal": {
+    "project": "spell-comparator",
+    "skipInstall": false,
+    "directory": ".",
+    "http": true
+  }
+}
