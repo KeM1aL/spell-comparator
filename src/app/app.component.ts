@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'spell-comparator';
-  //http://1v1baron.com:3000/resources/rarities.json
-  //http://1v1baron.com:3000/resources/troops.json
-  //http://1v1baron.com:3000/resources/spells.json
+  // http://1v1baron.com:3000/resources/rarities.json
+  // http://1v1baron.com:3000/resources/troops.json
+  // http://1v1baron.com:3000/resources/spells.json
 }
