@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {MaterialModule} from './material/material.module';
+import {SharedModule} from './shared';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,9 @@ import {MaterialModule} from './material/material.module';
     FlexLayoutModule,
     MaterialModule,
 
-    AppRoutingModule
+    AppRoutingModule,
+
+    SharedModule
   ],
   providers: [],
 })

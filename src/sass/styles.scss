@@ -1,6 +1,15 @@
-@import './variables';
-@import './mixins';
-@import '../app/app.component';
+@import "./variables";
+@import "./mixins";
+@import "../app/app.component";
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-image: url("src/assets/img/background.png");
+  background-size: cover;
+}
