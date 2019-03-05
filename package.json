@@ -11,6 +11,8 @@
     "build:server:prod": "ng run spell-comparator:server && webpack --config webpack.server.config.js --progress --colors",
     "build:browser:prod": "ng build --prod",
     "build:prod": "npm run build:server:prod && npm run build:browser:prod",
+	"build:ghpages" : "ng build --prod --base-href \"https://kem1al.github.io/spell-comparator/\"",
+	"deploy:ghpages" : "ngh --dir dist/browser",
     "server": "node local.js"
   },
   "private": true,
@@ -52,6 +54,7 @@
     "@types/jasminewd2": "~2.0.6",
     "@types/node": "~11.10.4",
     "ajv": "^6.10.0",
+    "angular-cli-ghpages": "^0.5.3",
     "codelyzer": "~4.5.0",
     "eslint": "^5.15.1",
     "jasmine-core": "~3.3.0",
