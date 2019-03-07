@@ -6,14 +6,17 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
+import { SharedModule } from './shared';
+import { BootstrapModule } from './bootstrap/bootstrap.module';
 import { AppComponent } from './app.component';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import {MaterialModule} from './material/material.module';
-import {SharedModule} from './shared';
+import { ComparatorComponent } from './comparator/comparator.component';
+import { CardSelectorComponent } from './card-selector/card-selector.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ComparatorComponent,
+    CardSelectorComponent
   ],
   imports: [
     BrowserModule,
@@ -25,8 +28,7 @@ import {SharedModule} from './shared';
     TransferHttpCacheModule,
     HttpClientModule,
 
-    FlexLayoutModule,
-    MaterialModule,
+    BootstrapModule,
 
     AppRoutingModule,
 
