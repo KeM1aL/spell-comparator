@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { CardSelectorService } from './card-selector.service';
-import { Card } from '../shared';
+import { Card, CardType } from '../shared';
 
 
 @Component({
@@ -10,16 +10,17 @@ import { Card } from '../shared';
   providers: [ CardSelectorService ]
 })
 export class CardSelectorComponent implements OnInit {
+  @Input('type') cardTypes: CardType[];
   cards: Card[];
 
   constructor(private cardService: CardSelectorService) { }
 
   ngOnInit() {
-    this.getCardList();
+    this.getCardList(this.cardTypes);
   }
 
-  getCardList() {
-    this.cardService.getCardList().subscribe(
+  getCardList(cardTypes: CardType[]) {
+    return this.cardService.getCardList(cardTypes).subscribe(
       data => {
         this.cards = data;
       }

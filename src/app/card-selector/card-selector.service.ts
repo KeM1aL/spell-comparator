@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { Card, SpellCard, TroopCard, BuildingCard, CardType, CardAdapter } from '../shared/model/card.model'
+import { Card, CardType, CardAdapter } from '../shared/model/card.model'
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { HttpDataWrapper } from '../core';
@@ -16,11 +16,10 @@ export class CardSelectorService {
     private adapter: CardAdapter,
     ) { }
 
-  getCardList(): Observable<Card[]> {
+  getCardList(cardTypes: CardType[]): Observable<Card[]> {
     const url = `${this.baseUrl}/resources/troops.json`;
     return this.http.get<HttpDataWrapper<any>>(url).pipe(
       map((result: HttpDataWrapper<any>) => {
-        console.log(result);
        return  result.data.map(item => this.adapter.adapt(item))
       })
     );

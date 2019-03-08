@@ -14,10 +14,10 @@ export class Card {
   type: CardType;
   description: string;
   elixir: number;
+  damage: number;
 }
 
 export class SpellCard extends Card {
-  damage: number;
   duration: number;
   crown_tower_damage: number;
   target: string;
@@ -31,14 +31,14 @@ export class TroopCard extends Card {
   hitpoints: number;
   location: string;
   shield?: number;
-  damage: any;
   constructor() {
     super();
     this.type = CardType.Troop;
   }
 }
 
-export class BuildingCard extends TroopCard {
+export class BuildingCard extends Card  {
+  hitpoints: number;
   constructor() {
     super();
     this.type = CardType.Building;
@@ -51,13 +51,29 @@ export class BuildingCard extends TroopCard {
 export class CardAdapter implements Adapter<Card> {
 
   adapt(item: any): Card {
+    let card = null;
     if (item.type === CardType.Spell) {
-      return new SpellCard();
+      card = new SpellCard();
+      card.duration = item.duration;
+      card.crown_tower_damage = item.crown_tower_damage;
+      card.target = item.target;
     } else if (item.type === CardType.Building) {
-      return new BuildingCard();
+      card = new BuildingCard();
+      card.hitpoints = item.hitpoints;
     } else if (item.type === CardType.Troop) {
-      return new TroopCard();
+      card = new TroopCard();
+      card.hitpoints = item.hitpoints;
+      card.location = item.location;
+      card.shield = item.shield;
+    } else {
+      throw new AdapterMappingError("Invalid card type " + item.type, "type");
     }
-    throw new AdapterMappingError("Invalid card type " + item.type, "type");
+    card.name = item.name;
+    card.key = item.key;
+    card.rarity = item.rarity;
+    card.description = item.description;
+    card.elixir = item.elixir;
+    card.damage = item.damage;
+    return card;
   }
 }

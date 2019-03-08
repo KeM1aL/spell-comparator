@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CardType } from '../shared';
 
 @Component({
   selector: 'app-comparator',
@@ -6,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./comparator.component.scss']
 })
 export class ComparatorComponent implements OnInit {
-
+  cardType: CardType;
+  
   constructor() { }
 
   ngOnInit() {
