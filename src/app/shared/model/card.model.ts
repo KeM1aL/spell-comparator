@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { Adapter, AdapterMappingError } from 'src/app/core';
 
 export enum CardType {
-  Building = "Building",
-  Troop = "Troop",
-  Spell = "Spell"
+  Building = 'Building',
+  Troop = 'Troop',
+  Spell = 'Spell'
 }
 
 export class Card {
@@ -19,7 +19,7 @@ export class Card {
 
 export class SpellCard extends Card {
   duration: number;
-  crown_tower_damage: number;
+  crownTowerDamage: number;
   target: string;
   constructor() {
     super();
@@ -55,7 +55,7 @@ export class CardAdapter implements Adapter<Card> {
     if (item.type === CardType.Spell) {
       card = new SpellCard();
       card.duration = item.duration;
-      card.crown_tower_damage = item.crown_tower_damage;
+      card.crownTowerDamage = item.crown_tower_damage;
       card.target = item.target;
     } else if (item.type === CardType.Building) {
       card = new BuildingCard();
@@ -66,7 +66,7 @@ export class CardAdapter implements Adapter<Card> {
       card.location = item.location;
       card.shield = item.shield;
     } else {
-      throw new AdapterMappingError("Invalid card type " + item.type, "type");
+      throw new AdapterMappingError('Invalid card type ' + item.type, 'type');
     }
     card.name = item.name;
     card.key = item.key;

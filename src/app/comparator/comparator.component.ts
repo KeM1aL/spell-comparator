@@ -7,11 +7,14 @@ import { CardType } from '../shared';
   styleUrls: ['./comparator.component.scss']
 })
 export class ComparatorComponent implements OnInit {
-  cardType: CardType;
-  
+  spellCardType: CardType[];
+  troopCardType: CardType[];
+
   constructor() { }
 
   ngOnInit() {
+    this.spellCardType = [CardType.Spell];
+    this.troopCardType = [CardType.Troop, CardType.Building];
   }
 
 }
