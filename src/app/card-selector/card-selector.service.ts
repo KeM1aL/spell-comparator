@@ -26,9 +26,8 @@ export class CardSelectorService {
 
   getCardList(cardTypes: CardType[]): Observable<SelectableCard[]> {
     return this.cardService.getCardList().pipe(
-      filter(cars => true),
       map((cards: Card[]) => {
-        return  cards.map(card => new SelectableCard(card));
+        return  cards.filter(card => cardTypes.indexOf(card.type) !== -1).map(card => new SelectableCard(card));
        })
       );
   }
