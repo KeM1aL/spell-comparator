@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ComparatorComponent } from './comparator/comparator.component';
+import { WebComparatorComponent } from './comparator/web/web-comparator.component';
 
 const routes: Routes = [
-  { path: 'comparator', component: ComparatorComponent },
+  { path: 'comparator', component: WebComparatorComponent },
   { path: '', redirectTo: '/comparator', pathMatch: 'full' }
 ];
 

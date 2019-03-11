@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { CardType } from '../shared';
+import { CardType } from '../../shared';
 
 @Component({
   selector: 'app-comparator',
-  templateUrl: './comparator.component.html',
-  styleUrls: ['./comparator.component.scss']
+  templateUrl: './web-comparator.component.html',
+  styleUrls: ['./web-comparator.component.scss']
 })
-export class ComparatorComponent implements OnInit {
+export class WebComparatorComponent implements OnInit {
   spellCardType: CardType[];
   troopCardType: CardType[];
 

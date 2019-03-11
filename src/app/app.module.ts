@@ -9,14 +9,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { SharedModule, CardService } from './shared';
 import { BootstrapModule } from './bootstrap/bootstrap.module';
 import { AppComponent } from './app.component';
-import { ComparatorComponent } from './comparator/comparator.component';
+import { WebComparatorComponent } from './comparator/web/web-comparator.component';
 import { CardSelectorComponent } from './card-selector/card-selector.component';
 import { loadCards, loadRarities } from './shared/factory';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ComparatorComponent,
+    WebComparatorComponent,
     CardSelectorComponent
   ],
   imports: [

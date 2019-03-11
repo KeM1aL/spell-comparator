@@ -1,3 +1,5 @@
-<p>
-  card-selector works!
-</p>
+<div class="card-deck card-selector-list">
+  <div *ngFor="let card of cards" class="card bg-dark text-white">
+    {{card.card.name}}
+  </div>
+</div>

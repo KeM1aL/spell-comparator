@@ -23,7 +23,6 @@ export class CardSelectorComponent implements OnInit {
     return this.cardSelectorService.getCardList(this.type).subscribe(
       data => {
         this.cards = data;
-        console.log(data);
       }
     );
   }
