@@ -8,9 +8,9 @@ export class SelectableCard {
   data: Card;
   selected: boolean;
 
-  constructor(card: Card) {
+  constructor(card: Card, selected: boolean) {
     this.data = card;
-    this.selected = false;
+    this.selected = selected;
   }
 }
 
@@ -23,10 +23,10 @@ export class CardSelectorService {
     private cardService: CardService
   ) { }
 
-  getCardList(cardTypes: CardType[]): Observable<SelectableCard[]> {
+  getCardList(cardTypes: CardType[], selected: boolean): Observable<SelectableCard[]> {
     return of(this.cardService.getCardList()).pipe(
       map((cards: Card[]) => {
-        return  cards.filter(card => cardTypes.indexOf(card.type) !== -1).map(card => new SelectableCard(card));
+        return  cards.filter(card => cardTypes.indexOf(card.type) !== -1).map(card => new SelectableCard(card, selected));
        })
       );
   }
