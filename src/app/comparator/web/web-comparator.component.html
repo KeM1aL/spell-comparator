@@ -7,11 +7,20 @@
   </div>
 </div>
 
-<div class="card m-3" id="spell-selector">
-    <div class="card-header bg-primary">
-      <h6 class="text-white">Step 2 - Select Troops / Buildings (Optional)</h6>
-    </div>
-    <div class="card-body">
-      <app-card-selector [type]="troopCardType" [selected]="true"></app-card-selector>
-    </div>
+<div class="card m-3" id="troop-selector">
+  <div class="card-header bg-primary">
+    <h6 class="text-white">Step 2 - Select Troops / Buildings (Optional)</h6>
   </div>
+  <div class="card-body">
+    <app-card-selector [type]="troopCardType" [defaultSelected]="true"></app-card-selector>
+  </div>
+</div>
+
+<div class="card m-3" id="spell-comparator">
+  <div class="card-header bg-primary">
+    <h6 class="text-white">Result</h6>
+  </div>
+  <div class="card-body">
+    <app-card-comparator></app-card-comparator>
+  </div>
+</div>

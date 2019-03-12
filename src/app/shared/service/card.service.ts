@@ -20,12 +20,8 @@ export class CardService {
     private rarityAdapter: CardRarityAdapter
   ) { }
 
-  loadRarityList(): Promise<any>  {
-    const rarityUrl = `${this.baseUrl}/resources/rarities.json`;
-    return this.http.get<HttpDataWrapper<any>>(rarityUrl).pipe(
-      map((result: HttpDataWrapper<any>) => {
-        return result.data.map(item => this.rarityAdapter.adapt(item));
-      }),
+  loadRarityList(): Promise<any> {
+    return this._loadRarityList().pipe(
       tap(rarities => {
         this.rarities = rarities;
       })
@@ -33,14 +29,23 @@ export class CardService {
   }
 
   loadCardList(): Promise<any> {
-    return forkJoin(this.loadSpellList(), this.loadTroopList()).pipe(
+    return forkJoin(this._loadSpellList(), this._loadTroopList()).pipe(
       tap(results => {
         this.cards = results[0].concat(results[1]);
       })
     ).toPromise();
   }
 
-  private loadSpellList(): Observable<Card[]> {
+  private _loadRarityList(): Observable<CardRarity[]> {
+    const rarityUrl = `${this.baseUrl}/resources/rarities.json`;
+    return this.http.get<HttpDataWrapper<any>>(rarityUrl).pipe(
+      map((result: HttpDataWrapper<any>) => {
+        return result.data.map(item => this.rarityAdapter.adapt(item));
+      })
+    );
+  }
+
+  private _loadSpellList(): Observable<Card[]> {
     const spellUrl = `${this.baseUrl}/resources/spells.json`;
     return this.http.get<HttpDataWrapper<any>>(spellUrl).pipe(
       map((result: HttpDataWrapper<any>) => {
@@ -49,7 +54,7 @@ export class CardService {
     );
   }
 
-  private loadTroopList(): Observable<Card[]> {
+  private _loadTroopList(): Observable<Card[]> {
     const spellUrl = `${this.baseUrl}/resources/troops.json`;
     return this.http.get<HttpDataWrapper<any>>(spellUrl).pipe(
       map((result: HttpDataWrapper<any>) => {

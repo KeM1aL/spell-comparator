@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { CardService, Card, CardType } from '../shared';
+import { CardService, Card, CardType } from '../../shared';
 import { Observable, of } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 

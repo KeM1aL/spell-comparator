@@ -10,14 +10,16 @@ import { SharedModule, CardService } from './shared';
 import { BootstrapModule } from './bootstrap/bootstrap.module';
 import { AppComponent } from './app.component';
 import { WebComparatorComponent } from './comparator/web/web-comparator.component';
-import { CardSelectorComponent } from './card-selector/card-selector.component';
+import { CardSelectorComponent } from './comparator/card-selector/card-selector.component';
 import { loadCards, loadRarities } from './shared/factory';
+import { CardComparatorComponent } from './comparator/card-comparator/card-comparator.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     WebComparatorComponent,
-    CardSelectorComponent
+    CardSelectorComponent,
+    CardComparatorComponent
   ],
   imports: [
     BrowserModule,

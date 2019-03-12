@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Adapter, AdapterMappingError } from 'src/app/core';
+import { environment } from 'src/environments/environment';
 
 export enum CardType {
   Building = 'Building',
@@ -15,6 +16,7 @@ export abstract class Card {
   description: string;
   elixir: number;
   damage: number;
+  imgURL: string;
 }
 
 export class SpellCard extends Card {
@@ -74,6 +76,7 @@ export class CardAdapter implements Adapter<Card> {
     card.description = item.description;
     card.elixir = item.elixir;
     card.damage = item.damage;
+    card.imgURL = `${environment.apiServer}/resources/CardsWithElixir/${card.key}.png`;
     return card;
   }
 }
