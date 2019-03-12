@@ -1,5 +1,10 @@
-<div class="card-deck card-selector-list">
-  <div *ngFor="let card of cards" class="card bg-dark text-white">
-    {{card.card.name}}
+<div class="row card-selector-list">
+  <div *ngFor="let card of cards" class="col-auto">
+    <div class="card text-white p-1" [ngClass]="{'selected': card.selected}" (click)="toggleSelection(card)">
+      <img src="/assets/img/fireball.jpg" class="card-img-top" alt="{{card.data.name}}">
+      <div class="card-img-overlay">
+
+      </div>
+    </div>
   </div>
 </div>

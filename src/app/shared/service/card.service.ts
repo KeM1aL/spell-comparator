@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
-import { Card, CardType, CardAdapter, CardRarity, CardRarityAdapter } from '../model/card.model';
+import { Card, CardType, CardAdapter, CardRarity, CardRarityAdapter } from '../model';
 import { Observable, forkJoin } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { HttpDataWrapper } from '../../core';

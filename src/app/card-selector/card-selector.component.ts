@@ -19,11 +19,15 @@ export class CardSelectorComponent implements OnInit {
     this.getCardList();
   }
 
-  getCardList() {
-    return this.cardSelectorService.getCardList(this.type).subscribe(
+  getCardList(): void {
+    this.cardSelectorService.getCardList(this.type).subscribe(
       data => {
         this.cards = data;
       }
     );
+  }
+
+  toggleSelection(card: SelectableCard): void {
+    card.selected = !card.selected;
   }
 }

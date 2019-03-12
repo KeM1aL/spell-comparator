@@ -5,15 +5,14 @@ import { Observable, of } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 
 export class SelectableCard {
-  card: Card;
+  data: Card;
   selected: boolean;
 
   constructor(card: Card) {
-    this.card = card;
+    this.data = card;
     this.selected = false;
   }
 }
-
 
 @Injectable({
   providedIn: 'root'
