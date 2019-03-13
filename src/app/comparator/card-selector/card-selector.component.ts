@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { CardSelectorService, SelectableCard } from './card-selector.service';
-import { Card, CardType } from '../../shared';
+import { Card, CardType, CardService } from '../../shared';
 import { environment } from '../../../environments/environment';
 import { CardComparatorService } from '../card-comparator/card-comparator.service';
 import { BehaviorSubject } from 'rxjs';
@@ -8,16 +7,16 @@ import { BehaviorSubject } from 'rxjs';
 @Component({
   selector: 'app-card-selector',
   templateUrl: './card-selector.component.html',
-  styleUrls: ['./card-selector.component.scss'],
-  providers: [CardSelectorService]
+  styleUrls: ['./card-selector.component.scss']
 })
 export class CardSelectorComponent implements OnInit {
   @Input() type: CardType[];
   @Input() defaultSelected?: boolean;
-  cards: SelectableCard[];
+  cards: Card[];
+  selection: Map<string, boolean>;
 
   constructor(
-    private cardSelectorService: CardSelectorService,
+    private cardService: CardService,
     private cardComparatorService: CardComparatorService) {
 
   }
@@ -26,27 +25,33 @@ export class CardSelectorComponent implements OnInit {
     if (!this.defaultSelected) {
       this.defaultSelected = false;
     }
-    this.getCardList();
+    this.selection = new Map();
+    this._initCardList();
   }
 
-  getCardList(): void {
-    this.cardSelectorService.getCardList(this.type, this.defaultSelected).subscribe(
+  private _initCardList(): void {
+    this.cardService.getCardList().subscribe(
       data => {
-        this.cards = data.sort((leftCard, rightCard): number =>
-          leftCard.data.name.localeCompare(rightCard.data.name)
+        this.cards = data.filter(card => this.type.indexOf(card.type) !== -1).sort((leftCard, rightCard): number =>
+          leftCard.name.localeCompare(rightCard.name)
         );
+        this.cards.forEach(card => this.selection.set(card.name, this.defaultSelected));
       }
     );
   }
 
   notifyUpdateSelectedCards(): void {
-    const selectedCards: Card[] = this.cards.filter((card: SelectableCard) => card.selected)
-      .map((card: SelectableCard) => card.data);
-    this.cardComparatorService.selectedSpells.next(selectedCards);
+
   }
 
-  toggleSelection(card: SelectableCard): void {
-    card.selected = !card.selected;
+  isSelected(card: Card): boolean {
+    return this.selection.get(card.name);
+  }
+
+  toggleSelection(card: Card): void {
+    const selected: boolean = !this.isSelected(card);
+    this.selection.set(card.name, selected);
+
     this.notifyUpdateSelectedCards();
   }
 }

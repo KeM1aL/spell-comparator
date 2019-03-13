@@ -1,7 +1,7 @@
 <div class="row card-selector-list">
   <div *ngFor="let card of cards" class="col-auto">
-    <div class="card text-white p-1" [ngClass]="{'selected': card.selected}" (click)="toggleSelection(card)">
-      <img [src]="card.data.imgURL" class="card-img-top" alt="{{card.data.name}}">
+    <div class="card text-white p-1" [ngClass]="{'selected': isSelected(card)}" (click)="toggleSelection(card)">
+      <img [src]="card.imgURL" class="card-img-top" alt="{{card.name}}">
       <div class="card-img-overlay">
 
       </div>

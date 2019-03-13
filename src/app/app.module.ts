@@ -11,7 +11,7 @@ import { BootstrapModule } from './bootstrap/bootstrap.module';
 import { AppComponent } from './app.component';
 import { WebComparatorComponent } from './comparator/web/web-comparator.component';
 import { CardSelectorComponent } from './comparator/card-selector/card-selector.component';
-import { loadCards, loadRarities } from './shared/factory';
+import { loadCards } from './shared/factory';
 import { CardComparatorComponent } from './comparator/card-comparator/card-comparator.component';
 
 @NgModule({
@@ -42,13 +42,7 @@ import { CardComparatorComponent } from './comparator/card-comparator/card-compa
       {
         provide: APP_INITIALIZER,
         useFactory: loadCards,
-        deps: [CardService], // dependancy
-        multi: true
-      },
-      {
-        provide: APP_INITIALIZER,
-        useFactory: loadRarities,
-        deps: [CardService], // dependancy
+        deps: [CardService], // dependency
         multi: true
       }
   ],

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Adapter, AdapterMappingError } from 'src/app/core';
 import { environment } from 'src/environments/environment';
+import { CardRarity } from './rarity.model';
 
 export enum CardType {
   Building = 'Building',
@@ -11,12 +12,13 @@ export enum CardType {
 export abstract class Card {
   name: string;
   key: string;
-  rarity: string;
   type: CardType;
   description: string;
   elixir: number;
   damage: number;
   imgURL: string;
+  level: number;
+  rarity: string;
 }
 
 export class SpellCard extends Card {

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { Card, CardType, CardAdapter, CardRarity, CardRarityAdapter } from '../model';
-import { Observable, forkJoin } from 'rxjs';
+import { Observable, forkJoin, of } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { HttpDataWrapper } from '../../core';
 
@@ -11,7 +11,7 @@ import { HttpDataWrapper } from '../../core';
 })
 export class CardService {
   cards: Card[];
-  rarities: CardRarity[];
+  rarities: Map<string, CardRarity>;
   baseUrl = environment.apiServer;
 
   constructor(
@@ -20,20 +20,17 @@ export class CardService {
     private rarityAdapter: CardRarityAdapter
   ) { }
 
-  loadRarityList(): Promise<any> {
-    return this._loadRarityList().pipe(
-      tap(rarities => {
-        this.rarities = rarities;
-      })
-    ).toPromise();
-  }
-
   loadCardList(): Promise<any> {
-    return forkJoin(this._loadSpellList(), this._loadTroopList()).pipe(
-      tap(results => {
-        this.cards = results[0].concat(results[1]);
-      })
-    ).toPromise();
+    const promise: Promise<any>  = new Promise((resolve, reject) => {
+      this._loadRarityList().subscribe(rarities => {
+        forkJoin(this._loadSpellList(), this._loadTroopList()).pipe(
+          tap(results => {
+            this.cards = results[0].concat(results[1]);
+          })
+        ).subscribe(cards => resolve());
+      });
+    });
+    return promise;
   }
 
   private _loadRarityList(): Observable<CardRarity[]> {
@@ -41,6 +38,12 @@ export class CardService {
     return this.http.get<HttpDataWrapper<any>>(rarityUrl).pipe(
       map((result: HttpDataWrapper<any>) => {
         return result.data.map(item => this.rarityAdapter.adapt(item));
+      }),
+      tap(rarities => {
+        this.rarities = new Map();
+        rarities.forEach(rarity => {
+          this.rarities.set(rarity.name, rarity);
+        });
       })
     );
   }
@@ -64,12 +67,12 @@ export class CardService {
   }
 
 
-  getCardList(): Card[] {
-    return this.cards;
+  getCardList(): Observable<Card[]> {
+    return of(this.cards);
   }
 
-  getRarities(): CardRarity[] {
-    return this.rarities;
+  getRarity(name: string): CardRarity {
+    return this.rarities.get(name);
   }
 
 }
