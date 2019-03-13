@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Card, CardType, CardService } from '../../shared';
 import { environment } from '../../../environments/environment';
 import { CardComparatorService } from '../card-comparator/card-comparator.service';
@@ -12,8 +12,9 @@ import { BehaviorSubject } from 'rxjs';
 export class CardSelectorComponent implements OnInit {
   @Input() type: CardType[];
   @Input() defaultSelected?: boolean;
+  @Output() selection?: EventEmitter<Card[]> = new EventEmitter<Card[]>();
   cards: Card[];
-  selection: Map<string, boolean>;
+  selectedKeys: Map<string, boolean>;
 
   constructor(
     private cardService: CardService,
@@ -25,7 +26,7 @@ export class CardSelectorComponent implements OnInit {
     if (!this.defaultSelected) {
       this.defaultSelected = false;
     }
-    this.selection = new Map();
+    this.selectedKeys = new Map();
     this._initCardList();
   }
 
@@ -35,23 +36,17 @@ export class CardSelectorComponent implements OnInit {
         this.cards = data.filter(card => this.type.indexOf(card.type) !== -1).sort((leftCard, rightCard): number =>
           leftCard.name.localeCompare(rightCard.name)
         );
-        this.cards.forEach(card => this.selection.set(card.name, this.defaultSelected));
+        this.cards.forEach(card => this.selectedKeys.set(card.key, this.defaultSelected));
       }
     );
   }
 
-  notifyUpdateSelectedCards(): void {
-
-  }
-
   isSelected(card: Card): boolean {
-    return this.selection.get(card.name);
+    return this.selectedKeys.get(card.key);
   }
 
   toggleSelection(card: Card): void {
     const selected: boolean = !this.isSelected(card);
-    this.selection.set(card.name, selected);
-
-    this.notifyUpdateSelectedCards();
+    this.selectedKeys.set(card.key, selected);
   }
 }
