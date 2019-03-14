@@ -6,7 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  // http://1v1baron.com:3000/resources/rarities.json
-  // http://1v1baron.com:3000/resources/troops.json
-  // http://1v1baron.com:3000/resources/spells.json
+  title = 'stackblitz';
 }

@@ -3,17 +3,21 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "spell-comparator": {
+    "stackblitz": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
       "prefix": "app",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/browser",
+            "outputPath": "dist/stackblitz",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -23,7 +27,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/sass/styles.scss"
+              "src/styles.scss"
             ],
             "scripts": [],
             "es5BrowserSupport": true
@@ -58,18 +62,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "spell-comparator:build"
+            "browserTarget": "stackblitz:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "spell-comparator:build:production"
+              "browserTarget": "stackblitz:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "spell-comparator:build"
+            "browserTarget": "stackblitz:build"
           }
         },
         "test": {
@@ -80,10 +84,7 @@
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
             "styles": [
-              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
-              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
-              "src/sass/styles.scss"
+              "src/styles.scss"
             ],
             "scripts": [],
             "assets": [
@@ -103,18 +104,10 @@
               "**/node_modules/**"
             ]
           }
-        },
-        "server": {
-          "builder": "@angular-devkit/build-angular:server",
-          "options": {
-            "outputPath": "dist/server",
-            "main": "src/main.server.ts",
-            "tsConfig": "src/tsconfig.server.json"
-          }
         }
       }
     },
-    "spell-comparator-e2e": {
+    "stackblitz-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "prefix": "",
@@ -123,11 +116,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "spell-comparator:serve"
+            "devServerTarget": "stackblitz:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "spell-comparator:serve:production"
+              "devServerTarget": "stackblitz:serve:production"
             }
           }
         },
@@ -143,10 +136,5 @@
       }
     }
   },
-  "defaultProject": "spell-comparator",
-  "schematics": {
-    "@schematics/angular:component": {
-      "styleext": "scss"
-    }
-  }
+  "defaultProject": "stackblitz"
 }

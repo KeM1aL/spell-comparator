@@ -1,54 +1,18 @@
-import { NgtUniversalModule } from '@ng-toolkit/universal';
-import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
-import { TransferHttpCacheModule } from '@nguniversal/common';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, APP_INITIALIZER } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgModule } from '@angular/core';
+
 import { AppRoutingModule } from './app-routing.module';
-import { SharedModule, CardService } from './shared';
-import { BootstrapModule } from './bootstrap/bootstrap.module';
 import { AppComponent } from './app.component';
-import { WebComparatorComponent } from './comparator/web/web-comparator.component';
-import { CardSelectorComponent } from './card-selector/card-selector.component';
-import { loadCards, loadRarities } from './shared/factory';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    WebComparatorComponent,
-    CardSelectorComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,
-
-    CommonModule,
-    NgtUniversalModule,
-
-    TransferHttpCacheModule,
-    HttpClientModule,
-
-    BootstrapModule,
-
-    AppRoutingModule,
-
-    SharedModule
+    AppRoutingModule
   ],
-  providers: [
-      CardService,
-      {
-        provide: APP_INITIALIZER,
-        useFactory: loadCards,
-        deps: [CardService], // dependancy
-        multi: true
-      },
-      {
-        provide: APP_INITIALIZER,
-        useFactory: loadRarities,
-        deps: [CardService], // dependancy
-        multi: true
-      }
-  ],
+  providers: [],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
