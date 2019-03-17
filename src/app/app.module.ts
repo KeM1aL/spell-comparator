@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { TransferHttpCacheModule } from '@nguniversal/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -26,7 +25,6 @@ import { CardComparatorComponent } from './comparator/card-comparator/card-compa
 
     CommonModule,
 
-    TransferHttpCacheModule,
     HttpClientModule,
 
     BootstrapModule,
