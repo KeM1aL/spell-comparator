@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiServer: 'http://1v1baron.com:3000'
+  //apiServer: 'http://1v1baron.com:3000',
+  apiServer: 'https://spellcomparator.app'
 };
 
 /*
