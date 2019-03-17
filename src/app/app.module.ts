@@ -1,4 +1,3 @@
-import { NgtUniversalModule } from '@ng-toolkit/universal';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { TransferHttpCacheModule } from '@nguniversal/common';
@@ -26,7 +25,6 @@ import { CardComparatorComponent } from './comparator/card-comparator/card-compa
     BrowserAnimationsModule,
 
     CommonModule,
-    NgtUniversalModule,
 
     TransferHttpCacheModule,
     HttpClientModule,

@@ -8,12 +8,10 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build:server:prod": "ng run spell-comparator:server && webpack --config webpack.server.config.js --progress --colors",
     "build:browser:prod": "ng build --prod",
-    "build:prod": "npm run build:server:prod && npm run build:browser:prod",
+    "build:prod": "npm run build:browser:prod",
     "build:ghpages": "ng build --prod --base-href \"https://kem1al.github.io/spell-comparator/\"",
-    "deploy:ghpages": "ngh --dir dist/browser",
-    "server": "node local.js"
+    "deploy:ghpages": "npm run build:ghpages && ngh --dir dist/browser"
   },
   "private": true,
   "dependencies": {
@@ -30,10 +28,6 @@
     "@angular/platform-server": "~7.2.7",
     "@angular/router": "~7.2.7",
     "@angular/service-worker": "^7.2.7",
-    "@ng-toolkit/universal": "^1.1.51",
-    "@nguniversal/common": "~7.1.0",
-    "@nguniversal/express-engine": "~7.1.0",
-    "@nguniversal/module-map-ngfactory-loader": "~7.1.0",
     "bootstrap": "4.2.1",
     "core-js": "^2.6.5",
     "cors": "~2.8.5",
@@ -44,7 +38,6 @@
     "rxjs": "~6.4.0",
     "ts-loader": "5.3.3",
     "tslib": "^1.9.3",
-    "webpack-cli": "^3.2.3",
     "zone.js": "~0.8.29"
   },
   "devDependencies": {
