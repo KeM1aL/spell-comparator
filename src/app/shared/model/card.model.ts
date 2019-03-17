@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Adapter, AdapterMappingError } from 'src/app/core';
-import { environment } from 'src/environments/environment';
+import { Adapter, AdapterMappingError } from '../../core';
+import { environment } from '../../../environments/environment';
 import { CardRarity } from './rarity.model';
 
 export enum CardType {
